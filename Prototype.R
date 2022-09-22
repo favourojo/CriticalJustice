@@ -11,8 +11,13 @@ cat("\014") # clear the console
 
 # add your libraries here
 
+install.packages(tidyverse)
+install.packages(ggplot2)
+install.packages(ggmap)
+
 library(tidyverse)
 library(ggplot2)
+library(ggmap)
 
 #Selecting the file
 myFile  <- file.choose() # pick the csv filename
