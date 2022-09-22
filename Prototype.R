@@ -11,20 +11,36 @@ cat("\014") # clear the console
 
 # add your libraries here
 
-install.packages(tidyverse)
-install.packages(ggplot2)
-install.packages(ggmap)
+install.packages("tidyverse")
+install.packages("ggplot2")
+install.packages("ggmap")
+install.packages("maptools")
+
 
 library(tidyverse)
 library(ggplot2)
 library(ggmap)
+library(maptools)
+
 
 #Selecting the file
 myFile  <- file.choose() # pick the csv filename
 myData <- read.csv(myFile) # load the data
 
 View(myData)
+register_google(key = "AIzaSyBDZJll0yKPZlnjbepZAcWIxoH2VLbHM_k")
 
-# Filtering the data to select certain variables to test using select()
-dat <- myData %>% select(county_name, crime_rate_per_100000, AG_ARRST, AG_OFF, MURDER, RAPE, ROBBERY, BURGLRY,
-LARCENY, MVTHEFT, ARSON, population)
+# load map of Pennsylvania 
+qmap('Pennsylvania')
+
+qmap('15227', zoom = 10, maptype = 'satellite')
+
+head(myData)
+# plot the hybrid Google Maps basemap
+map <- qmap('Pennsylvania', zoom = 12, maptype = 'hybrid')
+
+library(sp)
+# change the crimes data into a SpatialPointsDataFrame
+
+
+
