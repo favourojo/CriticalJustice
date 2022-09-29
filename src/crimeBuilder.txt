@@ -1,0 +1,10 @@
+/* Builder file to connect different crime stastics*/
+
+drop table 911; 
+create table 911 {
+    GEOID INTEGER NOT NULL, 
+    Municipality VARCHAR NOT NULL,
+    Pittsburgh Neighborhood VARCHAR NOT NULL,
+    Total Pop 2014-2018, INTEGER NOT NULL,
+    
+}
