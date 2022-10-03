@@ -1,10 +1,46 @@
 /* Builder file to connect different crime stastics*/
 
-drop table 911; 
-create table 911 {
-    GEOID INTEGER NOT NULL, 
-    Municipality VARCHAR NOT NULL,
-    Pittsburgh Neighborhood VARCHAR NOT NULL,
+PRAGMA foreign_keys=on;
+
+drop table AlleghenyCounty; 
+create table AlleghenyCounty {
+    GEOID, INTEGER NOT NULL, 
+    Municipality, VARCHAR NOT NULL,
+    Pittsburgh Neighborhood, VARCHAR NOT NULL,
     Total Pop 2014-2018, INTEGER NOT NULL,
-    
+    White Pop Rate 2014-2018, INTEGER NOT NULL,
+    Black Pop Rate 2014-2018, INTEGER NOT NULL,
+    His or Lat Pop Rate 2014-2018, INTEGER NOT NULL,
+    Family Poverty Rate 2014-2018, INTEGER NOT NULL,
+    Rate of Single Mothers 2014-2018, INTEGER NOT NULL,
+    Rate of those 25 and up without at least Bachelor's 2014-2018, INTEGER NOT NULL,
+    Median Home Value 2014-2018, INTEGER NOT NULL
+    Level of Need, VARCHAR NOT NULL
+
 }
+
+drop table;
+create table 911 {
+    call id hash, INTEGER NOT NULL,
+    service, VARCHAR NOT NULL, 
+    priority, VARCHAR NOT NULL,
+    prioriry_desc, VARCHAR NOT NULL,
+    call_year, INTEGER NOT NULL,
+    description_short, VARCHAR NOT NULL,
+    city_name, VARCHAR NOT NULL,
+    geoid, INTEGER NOT NULL,
+    census_block_group_center__x, INTEGER NOT NULL,
+    census_block_group_center___y, INTEGER NOT NULL
+}
+
+
+
+
+
+
+
+/* Separating data */
+.separator ","
+
+/* Importing data files and loading them into sqlite3 */ 
+.import data/911_Data.csv 
