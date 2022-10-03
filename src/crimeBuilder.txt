@@ -44,3 +44,5 @@ create table 911 {
 
 /* Importing data files and loading them into sqlite3 */ 
 .import data/911_Data.csv 
+.import data/CNI_2018-estimates.csv
+.import data/
