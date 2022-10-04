@@ -28,9 +28,6 @@ create table 911 {
     call_year, INTEGER NOT NULL,
     description_short, VARCHAR NOT NULL,
     city_name, VARCHAR NOT NULL,
-    geoid, INTEGER NOT NULL,
-    census_block_group_center__x, INTEGER NOT NULL,
-    census_block_group_center___y, INTEGER NOT NULL
 }
 
 
