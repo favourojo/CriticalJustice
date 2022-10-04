@@ -2,47 +2,45 @@
 
 PRAGMA foreign_keys=on;
 
-drop table EMSData;
-create table EMSData {
-    call_id_hash, INTEGER NOT NULL,
-    service, VARCHAR NOT NULL, 
-    priority, VARCHAR NOT NULL,
-    prioriry_desc, VARCHAR NOT NULL,
-    call_year, INTEGER NOT NULL,
-    description_short, VARCHAR NOT NULL,
-    city_name, VARCHAR NOT NULL,
+DROP TABLE EMSData;
+CREATE TABLE EMSData (
+    service VARCHAR NOT NULL, 
+    priority VARCHAR NOT NULL,
+    prioriry_desc VARCHAR NOT NULL,
+    call_year INTEGER NOT NULL,
+    description_short VARCHAR NOT NULL,
+    city_name VARCHAR NOT NULL,
     geoid, INTEGER NOT NULL,
-    census_block_group_center_x, INTEGER NOT NULL,
-    census_block_group_center_y, INTEGER NOT NULL
-} 
-
-drop table NeighborhoodData; 
-create table NeighborhoodData {
-    GEOID, INTEGER NOT NULL, 
-    Municipality, VARCHAR NOT NULL,
-    Pittsburgh Neighborhood, VARCHAR NOT NULL,
-    Total Pop 2014-2018, INTEGER NOT NULL,
-    White Pop Rate 2014-2018, INTEGER NOT NULL,
-    Black Pop Rate 2014-2018, INTEGER NOT NULL,
-    His or Lat Pop Rate 2014-2018, INTEGER NOT NULL,
-    Family Poverty Rate 2014-2018, INTEGER NOT NULL,
-    Rate of Single Mothers 2014-2018, INTEGER NOT NULL,
-    Rate of those 25 and up without at least Bachelor's 2014-2018, INTEGER NOT NULL,
-    Median Home Value 2014-2018, INTEGER NOT NULL
-    Level of Need, VARCHAR NOT NULL
-
-}
+    census_block_group_center_x INTEGER NOT NULL,
+    census_block_group_center_y INTEGER NOT NULL
+); 
 
 
-drop table PennsylvaniaData;
-create table PennsylvaniaData {
-    City, VARCHAR NOT NULL,
-    Population, INTEGER NOT NULL,
-    Violent crime, INTEGER NOT NULL,
-    Property crime, INTEGER NOT NULL,
-    Larceny-theft, INTEGER NOT NULL
-}
+DROP TABLE NeighborhoodData; 
+CREATE TABLE NeighborhoodData (
+    GEOID INTEGER NOT NULL, 
+    Municipality VARCHAR NOT NULL,
+    Pittsburgh Neighborhood VARCHAR NOT NULL,
+    Total Pop 2014-2018 INTEGER NOT NULL,
+    White Pop Rate 2014-2018 INTEGER NOT NULL,
+    Black Pop Rate 2014-2018 INTEGER NOT NULL,
+    His or Lat Pop Rate 2014-2018 INTEGER NOT NULL,
+    Family Poverty Rate 2014-2018 INTEGER NOT NULL,
+    Rate of Single Mothers 2014-2018 INTEGER NOT NULL,
+    Rate of those 25 and up without at least Bachelor's 2014-2018 INTEGER NOT NULL,
+    Median Home Value 2014-2018 INTEGER NOT NULL,
+    Level of Need VARCHAR NOT NULL
+);
 
+
+DROP TABLE PennsylvaniaData;
+CREATE TABLE PennsylvaniaData (
+    City VARCHAR NOT NULL,
+    Population INTEGER NOT NULL,
+    Violent crime INTEGER NOT NULL,
+    Property crime INTEGER NOT NULL,
+    Larceny-theft INTEGER NOT NULL
+);
 
 
 
@@ -55,4 +53,4 @@ create table PennsylvaniaData {
 .import data/pennsylvania.csv PennsylvaniaData
 
 /* How to run this builder */
-/* cat crimeBuilder.txt | sqlite3 community.sqlite3
+/* cat crimeBuilder.txt | sqlite3 community.sqlite3 */
