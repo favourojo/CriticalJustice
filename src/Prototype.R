@@ -15,19 +15,30 @@ install.packages("tidyverse")
 install.packages("ggplot2")
 install.packages("ggmap")
 install.packages("maptools")
-
+install.packages("rJava")
+install.packages("tabulizer")
 
 library(tidyverse)
 library(ggplot2)
 library(ggmap)
 library(maptools)
 
+update.packages(checkBuilt = TRUE, ask=FALSE)
 
 #Selecting the file
 myFile  <- file.choose() # pick the csv filename
-myData <- read.csv(myFile) # load the data
+police911_Data <- read.csv(myFile) # load the data
 
-View(myData)
+myFile2 <- file.choose()
+neighborhood_Data <- read.csv(myFile2)
+
+myFile3 <- file.choose()
+pennsylvania_Data <- read.csv(myFile3)
+
+View(police911_Data)
+View(neighborhood_Data)
+
+#registering API key to utllize Google Maps
 register_google(key = "AIzaSyBDZJll0yKPZlnjbepZAcWIxoH2VLbHM_k")
 
 # load map of Pennsylvania 

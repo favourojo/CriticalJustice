@@ -28,9 +28,19 @@ create table 911 {
     call_year, INTEGER NOT NULL,
     description_short, VARCHAR NOT NULL,
     city_name, VARCHAR NOT NULL,
+    geoid, INTEGER NOT NULL,
+    census_block_group_center_x, INTEGER NOT NULL,
+    census_block_group_center_y, INTEGER NOT NULL
+} 
+
+drop table;
+create table Pennsylvania {
+    City, VARCHAR NOT NULL,
+    Population, INTEGER NOT NULL,
+    Violent crime, INTEGER NOT NULL,
+    Property crime, INTEGER NOT NULL,
+    Larceny-theft, INTEGER NOT NULL
 }
-
-
 
 
 
@@ -41,5 +51,5 @@ create table 911 {
 
 /* Importing data files and loading them into sqlite3 */ 
 .import data/911_Data.csv 
-.import data/CNI_2018-estimates.csv
-.import data/
+.import data/Neighborhood.csv
+.import data/pennsylvania.csv
