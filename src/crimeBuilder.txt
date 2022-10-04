@@ -2,8 +2,22 @@
 
 PRAGMA foreign_keys=on;
 
-drop table AlleghenyCounty; 
-create table AlleghenyCounty {
+drop table EMSData;
+create table EMSData {
+    call_id_hash, INTEGER NOT NULL,
+    service, VARCHAR NOT NULL, 
+    priority, VARCHAR NOT NULL,
+    prioriry_desc, VARCHAR NOT NULL,
+    call_year, INTEGER NOT NULL,
+    description_short, VARCHAR NOT NULL,
+    city_name, VARCHAR NOT NULL,
+    geoid, INTEGER NOT NULL,
+    census_block_group_center_x, INTEGER NOT NULL,
+    census_block_group_center_y, INTEGER NOT NULL
+} 
+
+drop table NeighborhoodData; 
+create table NeighborhoodData {
     GEOID, INTEGER NOT NULL, 
     Municipality, VARCHAR NOT NULL,
     Pittsburgh Neighborhood, VARCHAR NOT NULL,
@@ -19,22 +33,9 @@ create table AlleghenyCounty {
 
 }
 
-drop table;
-create table 911 {
-    call id hash, INTEGER NOT NULL,
-    service, VARCHAR NOT NULL, 
-    priority, VARCHAR NOT NULL,
-    prioriry_desc, VARCHAR NOT NULL,
-    call_year, INTEGER NOT NULL,
-    description_short, VARCHAR NOT NULL,
-    city_name, VARCHAR NOT NULL,
-    geoid, INTEGER NOT NULL,
-    census_block_group_center_x, INTEGER NOT NULL,
-    census_block_group_center_y, INTEGER NOT NULL
-} 
 
-drop table;
-create table Pennsylvania {
+drop table PennsylvaniaData;
+create table PennsylvaniaData {
     City, VARCHAR NOT NULL,
     Population, INTEGER NOT NULL,
     Violent crime, INTEGER NOT NULL,
@@ -45,11 +46,13 @@ create table Pennsylvania {
 
 
 
-
 /* Separating data */
 .separator ","
 
 /* Importing data files and loading them into sqlite3 */ 
-.import data/911_Data.csv 
-.import data/Neighborhood.csv
-.import data/pennsylvania.csv
+.import data/911_Data.csv EMSData
+.import data/Neighborhood.csv NeighborhoodData
+.import data/pennsylvania.csv PennsylvaniaData
+
+/* How to run this builder */
+/* cat crimeBuilder.txt | sqlite3 community.sqlite3
