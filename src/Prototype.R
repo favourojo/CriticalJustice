@@ -35,8 +35,10 @@ neighborhood_Data <- read.csv(myFile2)
 myFile3 <- file.choose()
 pennsylvania_Data <- read.csv(myFile3)
 
+#View my data
 View(police911_Data)
 View(neighborhood_Data)
+View(pennsylvania_Data)
 
 #registering API key to utllize Google Maps
 register_google(key = "AIzaSyBDZJll0yKPZlnjbepZAcWIxoH2VLbHM_k")

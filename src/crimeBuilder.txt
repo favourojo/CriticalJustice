@@ -10,7 +10,7 @@ CREATE TABLE EMSData (
     call_year INTEGER NOT NULL,
     description_short VARCHAR NOT NULL,
     city_name VARCHAR NOT NULL,
-    geoid, INTEGER NOT NULL,
+    geoid int,
     census_block_group_center_x INTEGER NOT NULL,
     census_block_group_center_y INTEGER NOT NULL
 ); 
@@ -33,13 +33,21 @@ CREATE TABLE NeighborhoodData (
 );
 
 
+
 DROP TABLE PennsylvaniaData;
 CREATE TABLE PennsylvaniaData (
     City VARCHAR NOT NULL,
     Population INTEGER NOT NULL,
-    Violent crime INTEGER NOT NULL,
-    Property crime INTEGER NOT NULL,
-    Larceny-theft INTEGER NOT NULL
+    Violent-crime INTEGER NOT NULL,
+    Murder-and-nonnegligent-manslaughter INTEGER NOT NULL,
+    Rape, INTEGER NOT NULL,
+    Robbery, INTEGER NOT NULL,
+    Aggravated-assault, INTEGER NOT NULL,
+    Property-crime INTEGER NOT NULL,
+    Burglary, INTEGER NOT NULL,
+    Larceny-theft INTEGER NOT NULL,
+    Motor-vehicle-theft, INTEGER NOT NULL,
+    Arson, INTEGER NOT NULL
 );
 
 
