@@ -35,6 +35,9 @@ neighborhood_Data <- read.csv(myFile2)
 myFile3 <- file.choose()
 pennsylvania_Data <- read.csv(myFile3)
 
+myFile4 <- file.choose()
+incident_Data <- read.csv(myFile4)
+
 #View my data
 View(police911_Data)
 View(neighborhood_Data)

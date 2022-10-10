@@ -10,11 +10,11 @@ CREATE TABLE EMSData (
     call_year INTEGER NOT NULL,
     description_short VARCHAR NOT NULL,
     city_name VARCHAR NOT NULL,
-    geoid int,
-    census_block_group_center_x INTEGER NOT NULL,
-    census_block_group_center_y INTEGER NOT NULL
+    geoid int
 ); 
 
+INSERT INTO EMSData VALUES(1, "EMS", "E2", "EMS Standard Advanced Life Support response",
+2020, "Removed", "PITTSBURGH", 420035631002037);
 
 DROP TABLE NeighborhoodData; 
 CREATE TABLE NeighborhoodData (
@@ -31,7 +31,6 @@ CREATE TABLE NeighborhoodData (
     Median Home Value 2014-2018 INTEGER NOT NULL,
     Level of Need VARCHAR NOT NULL
 );
-
 
 
 DROP TABLE PennsylvaniaData;
