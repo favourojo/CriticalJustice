@@ -38,10 +38,24 @@ pennsylvania_Data <- read.csv(myFile3)
 myFile4 <- file.choose()
 incident_Data <- read.csv(myFile4)
 
+myFile5 <- file.choose()
+fireIncident_Data <- read.csv(myFile5)
+
+myFile6 <- file.choose()
+police311_Data <- read.csv(myFile6)
+
+myFile7 <- file.choose()
+trafficData <- read.csv(myFile7)
+
+
 #View my data
 View(police911_Data)
 View(neighborhood_Data)
 View(pennsylvania_Data)
+View(incident_Data)
+View(fireIncident_Data)
+View(police311_Data)
+view(trafficData)
 
 #registering API key to utllize Google Maps
 register_google(key = "AIzaSyBDZJll0yKPZlnjbepZAcWIxoH2VLbHM_k")

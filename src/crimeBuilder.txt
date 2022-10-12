@@ -6,7 +6,7 @@ DROP TABLE EMSData;
 CREATE TABLE EMSData (
     service VARCHAR NOT NULL, 
     priority VARCHAR NOT NULL,
-    prioriry_desc VARCHAR NOT NULL,
+    priority_desc VARCHAR NOT NULL,
     call_year INTEGER NOT NULL,
     description_short VARCHAR NOT NULL,
     city_name VARCHAR NOT NULL,
