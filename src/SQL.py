@@ -1,120 +1,128 @@
+#!/usr/bin/python
 # load libraries
-import mysql.connector as msql
-from mysql.connector import Error
+import sqlite3
+from sqlite3 import Error
 import pandas as pd
+import csv
+import sys
 
-empdata = pd.read_csv('/home/ojof/Documents/COMP/CriticalJustice/data/911_Data.csv', index_col=False, delimiter = ',')
-empdata.head()
-
-try:
-    conn = msql.connect(host='localhost', user ='favour',
-    password ='babies410')
-    if conn.is_connected():
-        cursor = conn.cursor()
-        cursor.execute("CREATE DATABASE EMS")
-        print("Database is created")
-except Error as e:
-    print("Error while connecting to MySQL", e)
-    
-
-
-"""
-def create_connection(host_name, user_name, user_password, db_name):
-	try: 
-		conn = mysql.connector.connect(
-            host='localhost',
-            user='favourojo',
-            passwd='babies410',
-        )
-        if conn.is_connected():
-            cursor = conn.cursor()
-            cursor.execute("CREATE DATABASE community")
-            print("Database is created")
-	except Error as e:
-		print(f"The error '{e}' occured")
-	
-	return connection 
-
-connection = create_connection("localhost", "root", "", "comm_app")
-
-
-def create_database(connection, query):
-    cursor = connection.cursor()
-    try:
-        cursor.execute(query)
-        print("Database created successfully")
+def create_connection(path):
+    connection = None 
+    try: 
+        connection = sqlite3.connect(path)
+        print("Connection to SQLite DB successful")
     except Error as e:
         print(f"The error '{e}' occurred")
 
-create_database_query = "CREATE DATABASE comm_app"
-create_database(connection, create_database_query)
+    return connection
+
+
+connection = create_connection("E:\\community.sqlite")
+
 
 def execute_query(connection, query):
     cursor = connection.cursor()
-    try:
+    try: 
         cursor.execute(query)
         connection.commit()
         print("Query executed successfully")
     except Error as e:
         print(f"The error '{e}' occurred")
 
-create_EMSData_table = 
+
+create_EMSData_table = """
 CREATE TABLE IF NOT EXISTS EMSData (
-    geoid INT AUTO_INCREMENT,
+    geoid INTEGER NOT NULL,
     service VARCHAR NOT NULL,
     priority VARCHAR NOT NULL,
     priority_desc VARCHAR NOT NULL,
     call_year INTEGER NOT NULL,
     description_short VARCHAR NOT NULL,
-    city_name VARCHAR NOT NULL,
-    PRIMARY KEY (geoid)
-) ENGINE = InnoDB
-
+    city_name VARCHAR NOT NULL
+);
+"""
 
 execute_query(connection, create_EMSData_table)
 
-create_NeighborhoodData_table = 
+
+create_NeighborhoodData_table = """
 CREATE TABLE IF NOT EXISTS NeighborhoodData (
     GEOID INTEGER NOT NULL,
     Municipality VARCHAR NOT NULL,
     Pittsburgh Neighborhood VARCHAR NOT NULL,
-    Total Pop 2014-2018 INTEGER NOT NULL,
-    White Pop Rate 2014-2018 INTEGER NOT NULL,
-    Black Pop Rate 2014-2018 INTEGER NOT NULL,
-    His or Lat Pop Rate 2014-2018 INTEGER NOT NULL,
-    Family Poverty Rate 2014-2018 INTEGER NOT NULL,
-    Rate of Single Mothers 2014-2018 INTEGER NOT NULL,
-    Rate of those 25 and up without at least Bachelor's 2014-2018 INTEGER NOT NULL,
-    Average 911 Dispatches for Shots Fired per 500 INTEGER NOT NULL,
-    Median Home Value 2014-2018 INTEGER NOT NULL,
-    Level of Need VARCHAR NOT NULL,
-    FOREIGN KEY fk_GEOID (GEOID) REFERENCES EMSDATA(geoid)
-    PRIMARY KEY (geoid)
-) ENGINE = InnoDB
+    Total Pop INTEGER NOT NULL,
+    White Pop Rate REAL NOT NULL,
+    Black Pop Rate REAL NOT NULL,
+    His Pop Rate REAL NOT NULL,
+    Family Poverty Rate REAL NOT NULL,
+    Rate of Single Mothers REAL NOT NULL,
+    Average Dispatches for Shots Fired per Five Hundred REAL NOT NULL,
+    Median Home Value INTEGER NOT NULL,
+    Level of Need VARCHAR NOT NULL
+);
+"""
 
 execute_query(connection, create_NeighborhoodData_table)
 
-
-create_EMSDATA = 
-INSERT INTO 
-`EMSData` (`service`, `priority`, `priority_desc`, `call_year`, `description_short`, `city_name`, `geoid`)
-VALUES
-('EMS', 'E2', 'EMS Standard Advanced Life Support response', 2020, 'Removed', 'PITTSBURGH', 420035631002037)
-
-
-
-def execute_read_query(connection, query):
-    cursor = connection.cursor()
-    result = None
-    try:
-        cursor.execute(query)
-        result = cursor.fetchall()
-        return result
-    except Error as e:
-        print(f"The error '{e}' occurred")
-
-
-    select_EMSData = "SELECT * FROM EMSData"
-    EMSD = execute_read_query(connection, select_EMSData)
+create_TrafficData_table = """
+CREATE TABLE IF NOT EXISTS TrafficData (
+    GENDER VARCHAR NOT NULL,
+    RACE VARCHAR NOT NULL,
+    AGE VARCHAR NOT NULL,
+    INCIDENTLOCATION VARCHAR NOT NULL,
+    OFFENSES VARCHAR NOT NULL,
+    NEIGHBORHOOD VARCHAR NOT NULL
+);
 """
+
+execute_query(connection, create_TrafficData_table)
+
+create_FireIncident_table = """
+CREATE TABLE IF NOT EXISTS FireIncident (
+    call_no VARCHAT NOT NULL,
+    incident_type INTEGER NOT NULL,
+    type_description VARCHAR NOT NULL,
+    address VARCHAR NOT NULL,
+    alarm _time VARCHAR NOT NULL,
+    neighborhood VARCHAR NOT NULL,
+    latitude REAL NOT NULL,
+    longitude REAL NOT NULL
+);
+"""
+
+execute_query(connection, create_FireIncident_table)
+
+
+create_EMSData = """
+INSERT INTO 
+    EMSData (service, priority, priority_desc, call_year, description_short, city_name, geoid)
+VALUES
+    ('EMS','E2','EMS Standard Advanced Life Support response', 'Removed', 'PGH', 'PITTSBURGH', 420035631002037),
+    ('EMS','E2','EMS Standard Advanced Life Support response', 'SICK', 'PGH', 'PITTSBURGH', 420031803002005),
+    ('EMS','E1','EMS Advanced Life Support life threatening response','ABDOMINAL PAIN','PGH','PITTSBURGH',420032503001002),
+    ('EMS','E1','EMS Advanced Life Support life threatening response','STROKE','SWS','SWISSVALE',420035154011012),
+    ('EMS','E1','EMS Advanced Life Support life threatening response','FALL','CLA','CLAIRTON',420034927001021);
+"""
+
+create_NeighborhoodData = """
+INSERT INTO 
+    NeighborhoodData(GEOID, Municipality, Pittsburgh Neighborhood, Total Pop, White Pop Rate, Black Pop Rate, Hispanic Pop Rate, Family Poverty Rate)
+
+
+"""
+
+
+
+
+execute_query(connection, create_EMSData)
+
+
     
+
+
+def main():
+    # database file input
+    con = sqlite3.connect(sys.argv[1])
+    cur = con.cursor()
+    cur.executescript("""
+    DROP TABLE IF EXISTS)

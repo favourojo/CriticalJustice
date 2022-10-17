@@ -57,6 +57,39 @@ View(fireIncident_Data)
 View(police311_Data)
 view(trafficData)
 
+#Selecting 911 Police data
+police911_Wilk <- police911_Data %>% filter(city_name == "WILKINSBURG", priority == "E1") %>% select(city_name,priority,service, priority_desc,description_short)
+View(police911_Wilk)
+
+police911_Wilk2 <- police911_Data %>% filter(city_name == "WILKINSBURG", priority == "E2") %>% select(city_name,priority,service, priority_desc,description_short)
+View(police911_Wilk2)
+
+police911_Wilk3 <- police911_Data %>% filter(city_name == "WILKINSBURG", priority == "E3") %>% select(city_name,priority,service, priority_desc,description_short)
+View(police911_Wilk3)
+
+police911_Wilk4 <- police911_Data %>% filter(city_name == "WILKINSBURG", priority == "E4") %>% select(city_name,priority,service, priority_desc,description_short)
+View(police911_Wilk4)
+
+police911_Hazel <- police911_Data %>% filter(city_name == "PITTSBURGH", priority == "E1") %>% select(city_name,priority,service, priority_desc,description_short)
+view(police911_Hazel)
+
+
+police911_MountL1 <- police911_Data %>% filter(city_name == "MOUNT LEBANON", priority == "E1") %>% select(city_name,priority,service,priority_desc,description_short)
+view(police911_MountL1)
+
+police911_MountL2 <- police911_Data %>% filter(city_name == "MOUNT LEBANON", priority == "E2") %>% select(city_name,priority,service,priority_desc,description_short)
+view(police911_MountL2)
+
+police911_MountL3 <- police911_Data %>% filter(city_name == "MOUNT LEBANON", priority == "E3") %>% select(city_name,priority,service,priority_desc,description_short)
+view(police911_MountL3)
+
+police911_MountL4 <- police911_Data %>% filter(city_name == "MOUNT LEBANON", priority == "E4") %>% select(city_name,priority,service,priority_desc,description_short)
+view(police911_MountL4)
+
+HazelwoodIncident <- incident_Data %>% filter(INCIDENTNEIGHBORHOOD == "Hazelwood") %>% select(INCIDENTLOCATION,INCIDENTNEIGHBORHOOD,INCIDENTHIERARCHYDESC,OFFENSES)
+view(HazelwoodIncident)
+
+
 #registering API key to utllize Google Maps
 register_google(key = "AIzaSyBDZJll0yKPZlnjbepZAcWIxoH2VLbHM_k")
 
