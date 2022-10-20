@@ -13,23 +13,21 @@ CREATE TABLE EMSData (
     geoid int
 ); 
 
-INSERT INTO EMSData VALUES(1, "EMS", "E2", "EMS Standard Advanced Life Support response",
-2020, "Removed", "PITTSBURGH", 420035631002037);
-
-DROP TABLE NeighborhoodData; 
-CREATE TABLE NeighborhoodData (
+DROP TABLE StatsData;
+CREATE TABLE StatsData (
     GEOID INTEGER NOT NULL, 
     Municipality VARCHAR NOT NULL,
-    Pittsburgh Neighborhood VARCHAR NOT NULL,
-    Total Pop 2014-2018 INTEGER NOT NULL,
-    White Pop Rate 2014-2018 INTEGER NOT NULL,
-    Black Pop Rate 2014-2018 INTEGER NOT NULL,
-    His or Lat Pop Rate 2014-2018 INTEGER NOT NULL,
-    Family Poverty Rate 2014-2018 INTEGER NOT NULL,
-    Rate of Single Mothers 2014-2018 INTEGER NOT NULL,
-    Rate of those 25 and up without at least Bachelor's 2014-2018 INTEGER NOT NULL,
-    Median Home Value 2014-2018 INTEGER NOT NULL,
-    Level of Need VARCHAR NOT NULL
+    Pittsburgh_Neighborhood VARCHAR NOT NULL,
+    Total_Pop INTEGER NOT NULL,
+    White_Pop_Rate INTEGER NOT NULL,
+    Black_Pop_Rate INTEGER NOT NULL,
+    His_Pop Rate INTEGER NOT NULL,
+    Family_Poverty_Rate INTEGER NOT NULL,
+    Rate_of_Single_Mothers REAL NOT NULL,
+    Average_Dispatches_for_Shots_Fired_per_Five_Hundred REAL NOT NULL,
+    Home_Median_Value INTEGER NOT NULL,
+    Median_Gross_Rent INTEGER NOT NULL,
+    Level_of_Need VARCHAR NOT NULL
 );
 
 
@@ -56,7 +54,7 @@ CREATE TABLE PennsylvaniaData (
 
 /* Importing data files and loading them into sqlite3 */ 
 .import data/911_Data.csv EMSData
-.import data/Neighborhood.csv NeighborhoodData
+.import data/Neighborhood.csv StatsData
 .import data/pennsylvania.csv PennsylvaniaData
 
 /* How to run this builder */

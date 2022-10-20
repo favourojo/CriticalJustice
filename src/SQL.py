@@ -1,10 +1,11 @@
 #!/usr/bin/python
 # load libraries
+
 import sqlite3
 from sqlite3 import Error
 import pandas as pd
 import csv
-import sys
+import os
 
 def create_connection(path):
     connection = None 
@@ -30,39 +31,75 @@ def execute_query(connection, query):
         print(f"The error '{e}' occurred")
 
 
+def execute_read_query(connection, query):
+    cursor = connection.cursor()
+    result = None
+    try: 
+        cursor.execute(query)
+        result = cursor.fetchall()
+        return result 
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+select_EMSdata = "SELECT * from EMSData"
+EMSdata = execute_read_query(connection, select_EMSdata)
+
+for EMS in EMSdata:
+    print(EMS)
+
+select_EMS_Stats = """
+SELECT
+
+
+
+"""
+
+"""
+select_StatsData = "SELECT * from StatsData"
+StatsData = execute_read_query(connection, select_StatsData)
+
+for stats in StatsData:Median
+    print(stats)
+"""
+
+
 create_EMSData_table = """
 CREATE TABLE IF NOT EXISTS EMSData (
-    geoid INTEGER NOT NULL,
+    geoid INTEGER PRIMARY KEY NOT NULL,
     service VARCHAR NOT NULL,
     priority VARCHAR NOT NULL,
     priority_desc VARCHAR NOT NULL,
     call_year INTEGER NOT NULL,
     description_short VARCHAR NOT NULL,
-    city_name VARCHAR NOT NULL
+    city_name VARCHAR NOT NULL,
+    FOREIGN KEY (GEOID)
+        REFERENCES StatsData (GEOID)
 );
 """
 
 execute_query(connection, create_EMSData_table)
 
 
-create_NeighborhoodData_table = """
-CREATE TABLE IF NOT EXISTS NeighborhoodData (
-    GEOID INTEGER NOT NULL,
+create_StatsData_table = """
+CREATE TABLE IF NOT EXISTS StatsData (
+    GEOID INTEGER PRIMARY KEY NOT NULL,
     Municipality VARCHAR NOT NULL,
-    Pittsburgh Neighborhood VARCHAR NOT NULL,
-    Total Pop INTEGER NOT NULL,
-    White Pop Rate REAL NOT NULL,
-    Black Pop Rate REAL NOT NULL,
-    His Pop Rate REAL NOT NULL,
-    Family Poverty Rate REAL NOT NULL,
-    Rate of Single Mothers REAL NOT NULL,
-    Average Dispatches for Shots Fired per Five Hundred REAL NOT NULL,
-    Median Home Value INTEGER NOT NULL,
-    Level of Need VARCHAR NOT NULL
+    Pittsburgh_Neighborhood VARCHAR NOT NULL,
+    Total_Pop INTEGER NOT NULL,
+    White_Pop_Rate REAL NOT NULL,
+    Black_Pop_Rate REAL NOT NULL,
+    His_Pop_Rate REAL NOT NULL,
+    Family_Poverty_Rate REAL NOT NULL,
+    Rate_of_Single_Mothers REAL NOT NULL,
+    Average_Dispatches_for_Shots_Fired_per_Five_Hundred REAL NOT NULL,
+    Home_Median_Value INTEGER NOT NULL,
+    Median_Gross_Rent INTEGER NOT NULL,
+    Level_of_Need VARCHAR NOT NULL
 );
 """
 
-execute_query(connection, create_NeighborhoodData_table)
+execute_query(connection, create_StatsData_table)
 
 create_TrafficData_table = """
 CREATE TABLE IF NOT EXISTS TrafficData (
@@ -93,36 +130,8 @@ CREATE TABLE IF NOT EXISTS FireIncident (
 execute_query(connection, create_FireIncident_table)
 
 
-create_EMSData = """
-INSERT INTO 
-    EMSData (service, priority, priority_desc, call_year, description_short, city_name, geoid)
-VALUES
-    ('EMS','E2','EMS Standard Advanced Life Support response', 'Removed', 'PGH', 'PITTSBURGH', 420035631002037),
-    ('EMS','E2','EMS Standard Advanced Life Support response', 'SICK', 'PGH', 'PITTSBURGH', 420031803002005),
-    ('EMS','E1','EMS Advanced Life Support life threatening response','ABDOMINAL PAIN','PGH','PITTSBURGH',420032503001002),
-    ('EMS','E1','EMS Advanced Life Support life threatening response','STROKE','SWS','SWISSVALE',420035154011012),
-    ('EMS','E1','EMS Advanced Life Support life threatening response','FALL','CLA','CLAIRTON',420034927001021);
-"""
 
-create_NeighborhoodData = """
-INSERT INTO 
-    NeighborhoodData(GEOID, Municipality, Pittsburgh Neighborhood, Total Pop, White Pop Rate, Black Pop Rate, Hispanic Pop Rate, Family Poverty Rate)
-
-
-"""
-
-
-
-
-execute_query(connection, create_EMSData)
 
 
     
 
-
-def main():
-    # database file input
-    con = sqlite3.connect(sys.argv[1])
-    cur = con.cursor()
-    cur.executescript("""
-    DROP TABLE IF EXISTS)

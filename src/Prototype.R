@@ -17,11 +17,36 @@ install.packages("ggmap")
 install.packages("maptools")
 install.packages("rJava")
 install.packages("tabulizer")
+install.packages("shiny")
 
 library(tidyverse)
 library(ggplot2)
 library(ggmap)
-library(maptools)
+
+~/shinyapp
+|-- app.R
+library(shiny)
+
+#Define UI for Community Data Exploration ----
+ui <- pageWithSidebar(
+  
+  # App title -----
+  headerPanel("Community Data Exploration"),
+  
+  # Sidepar panel for inputs ---
+  sidebarPanel(),
+  
+  #Main panel for displaying outputs ---
+  mainPanel()
+)
+
+# Define server logic to plot various variables against mpg ----
+server <- function(input, output) {
+  
+}
+shinyApp(ui, server)
+
+runApp("~/shinyapp")
 
 update.packages(checkBuilt = TRUE, ask=FALSE)
 
@@ -70,9 +95,6 @@ View(police911_Wilk3)
 police911_Wilk4 <- police911_Data %>% filter(city_name == "WILKINSBURG", priority == "E4") %>% select(city_name,priority,service, priority_desc,description_short)
 View(police911_Wilk4)
 
-police911_Hazel <- police911_Data %>% filter(city_name == "PITTSBURGH", priority == "E1") %>% select(city_name,priority,service, priority_desc,description_short)
-view(police911_Hazel)
-
 
 police911_MountL1 <- police911_Data %>% filter(city_name == "MOUNT LEBANON", priority == "E1") %>% select(city_name,priority,service,priority_desc,description_short)
 view(police911_MountL1)
@@ -86,8 +108,22 @@ view(police911_MountL3)
 police911_MountL4 <- police911_Data %>% filter(city_name == "MOUNT LEBANON", priority == "E4") %>% select(city_name,priority,service,priority_desc,description_short)
 view(police911_MountL4)
 
-HazelwoodIncident <- incident_Data %>% filter(INCIDENTNEIGHBORHOOD == "Hazelwood") %>% select(INCIDENTLOCATION,INCIDENTNEIGHBORHOOD,INCIDENTHIERARCHYDESC,OFFENSES)
-view(HazelwoodIncident)
+#Selecting 311 data
+police311_Wilk <- police311_Data %>% filter(NEIGHBORHOOD == "Hazelwood") %>% select(NEIGHBORHOOD, REQUEST_TYPE, DEPARTMENT)
+View(police311_Wilk)
+
+#Fire data
+building_Fire <- fireIncident_Data %>% filter(incident_type == 111) %>% select(incident_type,address,type_description,neighborhood,police_zone,latitude,longitude)                                                                        
+view(building_Fire)
+
+building__Fire_Wilk <- building_Fire %>% filter(neighborhood == "Wilkinsburg") %>% select(incident_type,address,neighborhood,type_description,police_zone,latitude,longitude)
+view(building__Fire_Wilk)
+
+#Neighborhood Data for majority Black neighborhood 
+
+## Carrick
+neighborhood_Carrick <- neighborhood_Data %>% filter(Pittsburgh.Neighborhood == "Carrick")
+
 
 
 #registering API key to utllize Google Maps
