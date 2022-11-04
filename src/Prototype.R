@@ -103,6 +103,10 @@ view(Wilk_Home)
 building__Fire_Wilk <- building_Fire %>% filter(neighborhood == "Wilkinsburg") %>% select(incident_type,address,alarm_time,neighborhood,type_description,police_zone,latitude,longitude)
 view(building__Fire_Wilk)
 
+#Traffic data for Wilkinsburg
+Traffic_Wilk <- trafficData %>% filter(NEIGHBORHOOD == "East Hills") %>% select(GENDER,RACE,AGE,CITEDTIME,INCIDENTLOCATION,OFFENSES,NEIGHBORHOOD)
+view(Traffic_Wilk)
+
 #Homewood North Home value 
 Homewood_value <- neighborhood_Data %>% filter(Pittsburgh_Neighborhood == "Homewood North") %>% select(Municipality,Pittsburgh_Neighborhood,Total_Pop,White_Pop_Rate,Black_Pop_Rate,Average_Dispatches_for_Shots_Fired_per_Five_Hundred,Home_Median_Value,Median_Gross_Rent,Level_of_Need)
 view(Homewood_value)
@@ -114,6 +118,10 @@ view(building_Fire_Home)
 #111 Fire data for Homewood South
 building_Fire_Homes <- building_Fire %>% filter(neighborhood == "Homewood South") %>% select(incident_type,address,alarm_time,neighborhood,type_description,police_zone,latitude,longitude)
 view(building_Fire_Homes)
+
+#Homewood South value
+Homewood_valueS <- neighborhood_Data %>% filter(Pittsburgh_Neighborhood == "Homewood South") %>% select(Municipality,Pittsburgh_Neighborhood,Total_Pop,White_Pop_Rate,Black_Pop_Rate,Average_Dispatches_for_Shots_Fired_per_Five_Hundred,Home_Median_Value,Median_Gross_Rent,Level_of_Need)
+view(Homewood_valueS)
 
 #Neighborhood Data for majority White neighborhood 
 
@@ -129,20 +137,47 @@ view(building_Fire_Bethel)
 fire_Squirrel <- fireIncident_Data %>% filter(neighborhood == "Squirrel Hill South") %>% select(incident_type,address,neighborhood,type_description,police_zone,latitude,longitude)
 view(fire_Squirrel)
 
-#111 Fire data for Squirrel Hill
+#111 Fire data for Squirrel Hill South 
 building_Fire_Squirrel <- building_Fire %>% filter(neighborhood == "Squirrel Hill South") %>% select(incident_type,address,alarm_time,neighborhood,type_description,police_zone,latitude,longitude)
 view(building_Fire_Squirrel)
+
+#Squirrel Hill South Home Value
+SquirrelS_Home <- neighborhood_Data %>% filter(Pittsburgh_Neighborhood == "Squirrel Hill South") %>% select(Pittsburgh_Neighborhood,Total_Pop,White_Pop_Rate,Black_Pop_Rate,Average_Dispatches_for_Shots_Fired_per_Five_Hundred,Home_Median_Value,Median_Gross_Rent,Level_of_Need)
+view(SquirrelS_Home)
+
+#Squirrel Hill North Home Value
+SquirrelN_Home <- neighborhood_Data %>% filter(Pittsburgh_Neighborhood == "Squirrel Hill North") %>% select(Pittsburgh_Neighborhood,Total_Pop,White_Pop_Rate,Black_Pop_Rate,Average_Dispatches_for_Shots_Fired_per_Five_Hundred,Home_Median_Value,Median_Gross_Rent,Level_of_Need)
+view(SquirrelN_Home)
+
+
+#111 Fire data for Squirrel Hill North 
+building_Fire_SquirrelN <- building_Fire %>% filter(neighborhood == "Squirrel Hill North") %>% select(incident_type,address,alarm_time,neighborhood,type_description,police_zone,latitude,longitude)
+view(building_Fire_SquirrelN)
+
+#111 Fire data for Squirrel Hill South
+building_Fire_SquirrelS <- building_Fire %>% filter(neighborhood == "Squirrel Hill South") %>% select(incident_type,address,alarm_time,neighborhood,type_description,police_zone,latitude,longitude)
+view(building_Fire_SquirrelS)
+
+#Traffic data for Banksville
+Traffic_Banks <- trafficData %>% filter(NEIGHBORHOOD == "Banksville") %>% select(GENDER,RACE,AGE,CITEDTIME,INCIDENTLOCATION,OFFENSES,NEIGHBORHOOD)
+view(Traffic_Banks)
+
+
 
 #Upper Saint Clair Home value
 UpperSC_Home <- neighborhood_Data %>% filter(Municipality == "Upper St. Clair Twp") %>% select(Municipality,Total_Pop,White_Pop_Rate,Black_Pop_Rate,Average_Dispatches_for_Shots_Fired_per_Five_Hundred,Home_Median_Value,Median_Gross_Rent,Level_of_Need)
 view(UpperSC_Home)
 
-#111 Fire data for Upper Saint Clair
-building_Fire_UpperSC <- fireIncident_Data %>% filter(neighborhood == "Upper Saint Clair") %>% select(incident_type,address,neighborhood,type_description,police_zone,latitude,longitude)
-
 #Banksville Home value
 Banks_Home <- neighborhood_Data %>% filter(Pittsburgh_Neighborhood == "Banksville") %>% select(Municipality,Total_Pop,White_Pop_Rate,Black_Pop_Rate,Average_Dispatches_for_Shots_Fired_per_Five_Hundred,Home_Median_Value,Median_Gross_Rent,Level_of_Need)
 view(Banks_Home)
+
+#111 Fire data for Banksville
+building_Fire_Banks <- building_Fire %>% filter(neighborhood == "Banksville") %>% select(incident_type,address,alarm_time,neighborhood,type_description,police_zone,latitude,longitude)
+view(building_Fire_Banks)
+
+
+
 
 
 
