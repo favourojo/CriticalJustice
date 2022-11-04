@@ -6,6 +6,7 @@ from sqlite3 import Error
 import pandas as pd
 import csv
 import os
+import matplotlib.pyplot as plt
 
 def create_connection(path):
     connection = None 
@@ -41,28 +42,34 @@ def execute_read_query(connection, query):
     except Error as e:
         print(f"The error '{e}' occurred")
 
+sql = """ """
 
-select_EMSdata = "SELECT * from EMSData"
-EMSdata = execute_read_query(connection, select_EMSdata)
+"""
+cursor = connection.cursor()
+cursor.execute(selec)
+"""
 
-for EMS in EMSdata:
-    print(EMS)
-
-select_EMS_Stats = """
+select_Stats = """
 SELECT
-
-
-
+    StatsData.Municipality
+    StatsData.Level_of_Need
+FROM 
+    StatsData
 """
 
+Stats = execute_read_query(connection, select_Stats)
+
+for Stat in Stats:
+    print(Stat)
+
 """
-select_StatsData = "SELECT * from StatsData"
+from StatsData"
 StatsData = execute_read_query(connection, select_StatsData)
 
 for stats in StatsData:Median
     print(stats)
-"""
 
+"""
 
 create_EMSData_table = """
 CREATE TABLE IF NOT EXISTS EMSData (
