@@ -1,4 +1,6 @@
 # CriticalJustice
+ 
+![logo](ReadyResearchers/CriticalJustice/images/Logo.png)
 
 ![CriticalJustice](images/Logo.png)
 
