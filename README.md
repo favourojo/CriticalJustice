@@ -1,18 +1,17 @@
 # CriticalJustice
  
-![logo](ReadyResearchers/CriticalJustice/images/Logo.png)
-
 ![CriticalJustice](images/Logo.png)
 
 ## Description 
-The project, CriticalJustice, will be focusing on forensic data analysis and data visualization, more specifically, how crime and community data positively or negatively affects communities. Because of my experience with learning about Community and Justice Studies here at Allegheny College, I would like to make analysis about why crime rate is high or low in certain counties and what factors could be contributing to that rate.
+The project, CriticalJustice, will be focusing on marginalization, specifically in Pittsburgh, PA.
 
 ## Project Background
 
 
 
 ## Purpose
-The purpose of this project is to shed light on the primarily Black and Brown communities in Allegheny County in the city of Pittsburgh. The way that I will be doing this is by focusing on certain factors in a community that affects 
+The purpose of this project is to shed light on the primarily Black and Brown communities in the city of Pittsburgh. 
+
 
 ## How to run program
 
