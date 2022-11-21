@@ -3,19 +3,23 @@
 ![CriticalJustice](images/Logo.png)
 
 ## Description 
-The project, CriticalJustice, will be focusing on marginalization, specifically in Pittsburgh, PA.
-
-## Project Background
-
+The project, CriticalJustice, will be focusing on marginalization, specifically in Pittsburgh, PA. Marginalization is the 
+treatment of a person, group, or concept as insignificant or peripheral. With 
 
 
 ## Purpose
 The purpose of this project is to shed light on the primarily Black and Brown communities in the city of Pittsburgh. 
+Individuals will now be able to see how some factors such as average dispatches per shot fired,  
 
 
-## How to run program
+## Run Instructions
 
-Python 
+SQLite3 
 ```
-python3 SQL.py
+sqlite3 community.db
 ```
+
+Query Instructions 
+``` 
+
+````
