@@ -13,9 +13,13 @@ cat("\014") # clear the console
 
 install.packages("tidyverse")
 install.packages("ggplot2")
+install.packages("gstat")
 
 library(tidyverse)
 library(ggplot2)
+library(ggmap)
+library(sp)
+library(gstat)
 
 update.packages(checkBuilt = TRUE, ask=FALSE)
 
@@ -44,6 +48,11 @@ trafficData <- read.csv(myFile7)
 myFile8 <- file.choose()
 CrimeData <- read.csv(myFile8)
 
+myFile9 <- file.choose()
+ShotData <- read.csv(myFile9)
+
+myFile10 <- file.choose()
+ShotData2 <- read.csv(myFile10)
 
 #View my data
 View(police911_Data)
@@ -54,6 +63,8 @@ View(fireIncident_Data)
 View(police311_Data)
 view(trafficData)
 view(CrimeData)
+view(ShotData)
+view(ShotData2)
 
 #Selecting Crime Data 
 Allegheny_Data <- CrimeData %>% filter(county_name == "Allegheny County, PA") %>% select(county_name,crime_rate_per_100000,AG_ARRST,ARSON,population)
@@ -177,6 +188,17 @@ building_Fire_Banks <- building_Fire %>% filter(neighborhood == "Banksville") %>
 view(building_Fire_Banks)
 
 
+## Mapping shots fired data
+register_google(key = "AIzaSyBDZJll0yKPZlnjbepZAcWIxoH2VLbHM_k", write = TRUE)
+
+coords <- cbind(longitude = as.numeric(as.character(ShotData$longitude)), latitude
+                = as.numeric(as.character(ShotData$latitude)))
+shot.pts <- SpatialPointsDataFrame(coords, ShotData, proj4string = CRS("+init=epsg:4326"))
+plot(shot.pts, pch = ".", col = "darkred")
+qmap(location = "Pittsburgh", zoom = 10, maptype = 'satellite')
+head(ShotData)
+
+map + geom_point(data = ShotData, aes(x = latitude, y = longitude),color = "red", size=3, alpha=0.5)
 
 
 
