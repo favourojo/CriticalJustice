@@ -3,13 +3,15 @@
 ![CriticalJustice](images/Logo.png)
 
 ## Abstract
-This tool will visualize several factors in infrastructure and also crime prevention that either positively and negatively affect
-neighborhood development. Marginalization is the treatment of a person, group, or concept as insignificant or peripheral, while infrastructure is 
-defined as the basic physical and organizational structures and facilities (e.g. buildings, roads , power supplies) needed for the operation of a society or enterprise.
-In the city of Pittsburgh, PA, communities where the black population is higher and the white population is lower, there tends to be a higher "need" of improvement of specific factors of
-infrastructure in that certain community. For instance, these factors can either differ from housing
+This tool will visualize several factors in crime prevention and marginalization that either positively or negatively affect neighborhood development. 
+Marginalization is the treatment of a person, group, or concept as insignificant or peripheral. Marginalization can exist in multiple forms, and can occur against 
+many groups of people. The three main types of marginalization are social marginalization, economic marginalization, and political marginalization. 
+Within the city of Pittsburgh, PA, there are huge difference between 
+primarily black and white communities that contribute to neighborhood development. For instance, 
+In the city of Pittsburgh, PA, communities where the black population is higher and the white population is lower, there tends to be a 
+higher "need" of improvement of specific factors of infrastructure in that certain community. For instance, these factors can either differ from housing,
 
-the need for neighborhood development, and this information becomes overlooked. 
+
 
 ## Purpose
 The purpose of this project is to shed light on the primarily Black communities in the city of Pittsburgh. 
@@ -34,4 +36,8 @@ Query Instructions
 SELECT column FROM database WHERE condition 
 ````
 
+Map Visualization
+```
+python3 shotsMap.py
+```
 
