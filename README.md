@@ -14,8 +14,9 @@ crime prevention and marginalization that either positively or negatively affect
 
 ## Purpose
 The purpose of this project is to shed light on the issues that are affecting primarily black communities in the city of Pittsburgh. 
-With the use of queries, individuals will now be able to see how some factors such as __Average Dispatches Per Shot Fired__, __Home Value__, 
-and __Level_of_Need__, contribute to the marginalization of a certain community in Pittsburgh, PA. 
+With the use of queries, individuals will now be able to see how some factors such as __Average Dispatches Per Shot Fired__, __Median Home Value__, 
+and __Level of Need__, contribute to the marginalization of a certain community in Pittsburgh, PA. These factors tend to be overlooked by individuals
+that live in the suburban communities of Pittsburgh, PA because they do not face these issues. 
 
 
 ## References 
