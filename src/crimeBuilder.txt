@@ -1,0 +1,61 @@
+/* Builder file to connect different crime stastics*/
+
+PRAGMA foreign_keys=on;
+
+DROP TABLE EMSData;
+CREATE TABLE EMSData (
+    service VARCHAR NOT NULL, 
+    priority VARCHAR NOT NULL,
+    priority_desc VARCHAR NOT NULL,
+    call_year INTEGER NOT NULL,
+    description_short VARCHAR NOT NULL,
+    city_name VARCHAR NOT NULL,
+    geoid int
+); 
+
+DROP TABLE StatsData;
+CREATE TABLE StatsData (
+    GEOID INTEGER NOT NULL, 
+    Municipality VARCHAR NOT NULL,
+    Pittsburgh_Neighborhood VARCHAR NOT NULL,
+    Total_Pop INTEGER NOT NULL,
+    White_Pop_Rate INTEGER NOT NULL,
+    Black_Pop_Rate INTEGER NOT NULL,
+    His_Pop Rate INTEGER NOT NULL,
+    Family_Poverty_Rate INTEGER NOT NULL,
+    Rate_of_Single_Mothers REAL NOT NULL,
+    Average_Dispatches_for_Shots_Fired_per_Five_Hundred REAL NOT NULL,
+    Home_Median_Value INTEGER NOT NULL,
+    Median_Gross_Rent INTEGER NOT NULL,
+    Level_of_Need VARCHAR NOT NULL
+);
+
+
+DROP TABLE PennsylvaniaData;
+CREATE TABLE PennsylvaniaData (
+    City VARCHAR NOT NULL,
+    Population INTEGER NOT NULL,
+    Violent-crime INTEGER NOT NULL,
+    Murder-and-nonnegligent-manslaughter INTEGER NOT NULL,
+    Rape, INTEGER NOT NULL,
+    Robbery, INTEGER NOT NULL,
+    Aggravated-assault, INTEGER NOT NULL,
+    Property-crime INTEGER NOT NULL,
+    Burglary, INTEGER NOT NULL,
+    Larceny-theft INTEGER NOT NULL,
+    Motor-vehicle-theft, INTEGER NOT NULL,
+    Arson, INTEGER NOT NULL
+);
+
+
+
+/* Separating data */
+.separator ","
+
+/* Importing data files and loading them into sqlite3 */ 
+.import data/911_Data.csv EMSData
+.import data/Neighborhood.csv StatsData
+.import data/pennsylvania.csv PennsylvaniaData
+
+/* How to run this builder */
+/* cat crimeBuilder.txt | sqlite3 community.sqlite3 */
