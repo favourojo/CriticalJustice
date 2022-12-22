@@ -1,12 +1,11 @@
 # Python program to create a map that displays shots fired data as map
 
+import branca
 import folium
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt 
-import descartes 
 import geopandas as gpd 
-from shapely.geometry import Point, Polygon
+
 
 # Read Pittsburgh, PA shots fired data
 shots = pd.read_csv(

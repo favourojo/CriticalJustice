@@ -53,26 +53,7 @@ SELECT "column" FROM "database" WHERE "condition"
 ```
 
 With this query command, users will be able to view the connections or correlations between the datasets. Also, the users will be able to view
-how specific neighborhoods in Pittsburgh, PA differ based on some key factors such as __Average Dispatches Per Shot Fired__, __Median Home Value__, and __Level of Need__. For example, if one wanted to compare urban and suburban communities, the queries would resemble these:
-
-```SQL
-SELECT Pittsburgh_Neighborhood, White_Pop_Rate, Black_Pop_Rate, Average_Dispatches_for_Shots_Fired_per_Five_Hundred, 
-Home_Median_Value, Level_of Need FROM StatsData WHERE Pittsburgh_Neighborhood == "Homewood North";
-```
-
-```SQL
-SELECT Pittsburgh_Neighborhood, White_Pop_Rate, Black_Pop_Rate, Average_Dispatches_for_Shots_Fired_per_Five_Hundred, 
-Home_Median_Value, Level_of Need FROM StatsData WHERE Pittsburgh_Neighborhood == "Homewood South";
-```
-
-![Homewood](images/homewood.png)
-
-```SQL
-SELECT Municipality, White_Pop_Rate, Black_Pop_Rate, Average_Dispatches_for_Shots_Fired_per_Five_Hundred, 
-Home_Median_Value, Level_of Need FROM StatsData WHERE Pittsburgh_Neighborhood == "Bethel Park";
-```
-
-![Bethel Park](images/bethel.png)
+how specific neighborhoods in Pittsburgh, PA differ based on some key factors such as __Average Dispatches Per Shot Fired__, __Median Home Value__, and __Level of Need__.
 
 Map Visualization:
 
