@@ -1,4 +1,4 @@
-# ***CriticalJustice***
+# ***CriticalJustice: Visualizing the Impact of Crime Prevention in Neighborhood Development***
  
 ![CriticalJustice](images/Logo.png)
 
@@ -9,7 +9,7 @@ CriticalJustice visualizes factors in the determinants of crime and the relation
 
 ## Purpose
 
-The purpose of this project is to shed light on the issues that are affecting primarily black communities in the city of Pittsburgh. With the use of queries, individuals will now be able to see how some factors such as __Average Dispatches Per Shot Fired__, __Median Home Value__, and __Level of Need__, contribute to the marginalization of a certain community in Pittsburgh, PA. These factors tend to be overlooked by individuals that live in the suburban communities of Pittsburgh, PA because they do not face these issues.
+The purpose of this project is to shed light on the issues that are affecting primarily black communities in the city of Pittsburgh. With the use of SQLite3, the connections and correlations between the datasets will be able to be viewed. Also, with the use of queries, individuals will now be able to see how factors such as __Average Dispatches Per Shot Fired__, __Median Home Value__, and __Level of Need__, may contribute to the marginalization of a certain community in Pittsburgh, PA. These factors tend to be overlooked by individuals that live in the suburban communities of Pittsburgh, PA because they do not face these issues.
 
 
 ## Run Instructions in Terminal
@@ -20,15 +20,27 @@ SQLite3 command:
 sqlite3 community.db
 ```
 
-To successfully run this command, the user would navigate to hte `data` directory that contains each of the datasets. Once this command has been run, the program will switch to the SQLite3 command line shell.
+To successfully run this command, the user would need to navigate to the `data` directory that contains each of the datasets. Once this command has been run, the program will switch to the SQLite3 command line shell.
 
 ![SQL Command Shell](images/SQL.png)
 
-Query Instructions:
+After switching to the SQLite3 command line shell, the user can utilize the
+
+```
+.tables
+```
+command to check that all tables are present within the SQLite3 database.
+
+![.tables command](images/tables.png)
+
+Query Command:
 
 ``` 
 SELECT column FROM database WHERE condition 
 ````
+
+With this query command, users will be able to view the connections or correlations between the datasets. Also, the users will be able to view
+how each neighborhood in Pittsburgh, PA differs based on some key factors. For example, if one wanted to compare urban and suburban communities, the queries would resemble these
 
 Map Visualization:
 
