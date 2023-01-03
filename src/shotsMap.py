@@ -1,43 +1,55 @@
 # Python program to create a map that displays shots fired data as map
 
-import branca
-import folium
-import pandas as pd
-import matplotlib.pyplot as plt 
-import geopandas as gpd 
+from mpl_toolkits.basemap import Basemap
+import matplotlib.pyplot as plt
+import numpy as np
+import geopandas as gpd
+import contextily as ctx
+import csv
 
+lat, lon, date = [],[],[]
 
-# Read Pittsburgh, PA shots fired data
-shots = pd.read_csv(
-    "C:\\Users\\favou\\Documents\\COMP\\CriticalJustice\\data",
-    header=0,
-    dtype={0:str, 1:str, 2:float, 3:float, 4:str})
-print(shots.shape)
-# Import street map 
-street_map = gpd.read_file('/home/ojof/Documents/COMP/CriticalJustice/src/Allegheny_County_Census_Block_Groups_2016.shp')
+with open('shots.csv') as csvfile:
+    reader = csv.DictReader(csvfile,delimiter=',')
+    for data in reader:
+        lat.append(float(data['Latitude']))
+        lon.append(float(data['Longitude']))
+        date.append(data['Date'])
 
-# designate coordiante system 
-crs = {'init':'espc:4326'}  
-# zip x and y coordinates into single feature
+# input desired coordiantes
 
-geometry = [Point(xy) for xy in zip(shots['longitude'], shots['latitude'])]
+my_coords = [40.4406, 79.9959]
 
-# Create GeoPandas dataframe
-#geo_df = gpd.GeoDataFrame(shots, crs = crs, geometry = geometry)
-geo_df = gpd.GeoDataFrame(shots, geometry = geometry)
+zoom_scale = 1
 
-# Create figure and axes, assigning to a subplot
-fig, ax = plt.subplots(figsize=(15,15))
+bbox = [my_coords[0]-zoom_scale, my_coords[0]+zoom_scale,\
+        my_coords[1]-zoom_scale, my_coords[1]+zoom_scale]
 
-# Add .shp mapfile to axes
-street_map.plot(ax=ax, alpha=0.4,color='grey')
+plt.figure(figsize=(12,6))
 
-geo_df.plot(column='longitude' & 'latitude', ax=ax, alpha=0.5,
-            legend=True, markersize=10)
+# defining projection, scale, corners of the map, and resolution
+m = Basemap(projection='merc',llcrnrlat=bbox[0],urcrnrlat=bbox[1],\
+            llcrnrlon=bbox[2],urcrnrlon=bbox[3],lat_ts=10,resolution='i')
 
-# Add title to graph
-plt.title('Shots Fired Data in Pittsburgh', 
-fontsize=15, fontweight='bold')
+# Draw coastlines and fill continents and water with color
+m.drawcoastlines()
+m.fillcontinents(color='peru',lake_color='dodgerblue')
 
-# Show map
+# Draw parallels, meridians, and color boundaries
+m.drawparallels(np.arange(bbox[0],bbox[1],(bbox[1]-bbox[0])/5),labels=[1,0,0,0])
+m.drawmeridians(np.arange(bbox[2],bbox[3],(bbox[3]-bbox[2])/5),labels=[0,0,0,1],rotation=45)
+
+m.drawmapboundary(fill_color='dodgerblue')
+
+# read a shape file as a geodataframe
+gdf = gpd.read_file(r'C:\Users\favou\Documents\COMP\CriticalJustice\src\Allegheny_County_Census_Block_Groups_2016.shp')
+
+# convert from one crs to another
+gdf_3857 = gdf.to_crs(epsg=3857)
+ax = gdf_3857.plot()
+ctx.add_basemap(ax)
 plt.show()
+ 
+# Build and plot coordiantes onto map
+plt.title("Shots Fired Data Map")
+plt.savefig('map_test.png', format='png', dpi=500)
