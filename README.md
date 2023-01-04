@@ -60,3 +60,5 @@ Map Visualization:
 ```python
 python shotsMap.py
 ```
+
+By running this command, a Folium map will be generated in the `index.html` file. The Folium map will contain an interactive world map, but the zoom will be focused on the city of Pittsburgh, Pennsylvania. In the city of Pittsburgh, there will be markers that represents __Shots Fired Data__ that is located in the `shots.csv` file.
