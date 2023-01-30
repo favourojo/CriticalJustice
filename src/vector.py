@@ -1,13 +1,16 @@
+import os
 import pandas as pd
+import numpy as np 
 import shapefile as shp
 import matplotlib.pyplot as plt
 import geopandas as gpd
 import folium
-from folium import plugins
+from folium import Choropleth, Circle, Marker
+from folium.features import GeoJsonTooltip
+from folium.plugins import MarkerCluster
 
 
 # set the filepath and load 
-# sf = shp.Reader(r"C:\Users\favou\Documents\COMP\CriticalJustice\src\Neighborhood_SNAP.shp")
 # data = pd.read_csv(r"C:\Users\favou\Documents\COMP\CriticalJustice\data\shots.csv")
 # plt.figure()
 # for shape in sf.shapeRecords():
@@ -18,36 +21,44 @@ from folium import plugins
 
 pitt_map = folium.Map()
 
-
 folium.GeoJson('https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson').add_to(pitt_map)
 
 counties_gdf = gpd.read_file(r"C:\Users\favou\Documents\COMP\CriticalJustice\src\Neighborhood_SNAP.shp")
+print(counties_gdf.head)
 
+
+
+base_df = pd.read_csv(r'C:\Users\favou\Documents\COMP\CriticalJustice\data\shots.csv')
+neighbor = pd.read_csv(r"C:\Users\favou\Documents\COMP\CriticalJustice\data\Neighborhood.csv")
+
+
+folium.Choropleth(
+    geo_data='https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson',
+    data=neighbor,
+    columns=['Pittsburgh_Neighborhood', 'Black_Pop_Rate'],
+    key_on='feature.properties.id',
+    fill_color='YlGnBu',
+    fill_opacity=0.7,
+    line_opacity=0.2,
+    legend_name="Black Population Rate" 
+).add_to(pitt_map)
+
+
+marker_cluster = MarkerCluster().add_to(pitt_map)
+
+tooltip = "Incident Type?"
+
+for i, r in base_df.iterrows():
+    location =[r['Latitude'], r['Longitude']]
+    # folium.Marker(location, tooltip=tooltip, popup=r["IncidentType"]).add_to(pitt_map)
+    folium.Marker(location, tooltip=tooltip, popup=r["IncidentType"]).add_to(marker_cluster)
+# save map to html file
 folium.GeoJson(data=counties_gdf["geometry"]).add_to(pitt_map)
 
-# 
 
-# base_df = pd.read_csv(r'C:\Users\favou\Documents\COMP\CriticalJustice\data\shots.csv')
-# print(base_df.head())
+folium.LayerControl(collapsed=False).add_to(pitt_map)
 
-neighbor = gpd.datasets.get_path(r"C:\Users\favou\Documents\COMP\CriticalJustice\data\Neighborhood.csv")
-df = gpd.read_file(neighbor)
-# neighborhood_data = pd.read_csv(neighbor)
-center = [40.4406, -79.9959]
- 
 
-pitt_map = folium.Map(location=center,zoom_start=5,)
-for i, r in df.iterrows():
-    sim_geo = gpd.GeoSeries(r['geometry']).simplify(tolerance=0.001)
-    geo_j = sim_geo.to_json()
-    geo_j = folium.GeoJson(data=geo_j,
-                            style_function=lambda x: {'fillColor': 'orange'})
-    folium.Popup(r['Pittsburgh_Neighborhood']).add_to(geo_j)
-    geo_j.add_to(pitt_map)
-    # location =[r['Latitude'], r['Longitude']]
-    # folium.Marker(location).add_to(pitt_map)  
-
-# save map to html file
 
 pitt_map.save('index.html')
 
