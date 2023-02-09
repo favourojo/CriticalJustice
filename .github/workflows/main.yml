@@ -22,6 +22,7 @@ jobs:
         pip install pandas
     - name: Publish page
       run: |
+        cd src
         python vector.py
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
