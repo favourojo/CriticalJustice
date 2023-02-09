@@ -16,8 +16,10 @@ jobs:
         python-version: 3.10.6
     - name: Install requirements
       run: |
-        cd src
-        pip install -r requirements.txt
+        pip install numpy
+        pip install geopandas
+        pip install folium
+        pip install pandas
     - name: Publish page
       run: |
         python vector.py
