@@ -22,6 +22,7 @@ jobs:
         pip install folium
         pip install pandas
         pip install pyshp
+        pip install matplotlib
     - name: Publish page
       run: |
         cd src
