@@ -21,6 +21,7 @@ jobs:
         pip install geopandas
         pip install folium
         pip install pandas
+        pip install shapefile
     - name: Publish page
       run: |
         cd src
