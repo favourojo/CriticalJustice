@@ -26,7 +26,7 @@ folium.Choropleth(
     data=neighbor,
     columns=['Pittsburgh_Neighborhood', 'Level_of_Need_Scale'],
     key_on='feature.properties.name',
-    fill_color='OrRd',
+    fill_color='YlOrRd',
     fill_opacity=0.7,
     line_opacity=0.2,
     legend_name="Level of Need Scale in Pittsburgh, Pennsylvania" 
