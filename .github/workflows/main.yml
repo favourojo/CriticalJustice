@@ -1,0 +1,31 @@
+on:
+  push:
+    branches: [main]
+
+jobs: 
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with: 
+        fetch-depth: '0'
+    - name: Setup Python
+      if: always()
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.10.6
+    - name: Install requirements
+      run: |
+        pip install datatest
+        pip install numpy
+        pip install geopandas
+        pip install folium
+        pip install pandas
+        pip install pyshp
+        pip install matplotlib
+    - name: Publish page
+      run: |
+        cd src
+        python vector.py
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
