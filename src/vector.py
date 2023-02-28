@@ -1,15 +1,55 @@
 import pandas as pd
 from datatest import validate
 import numpy as np 
+import branca
 import geopandas as gpd
 import folium
 from folium import Choropleth, Marker
+from folium.plugins import FloatImage
 from folium.features import GeoJsonTooltip
 from folium.plugins import MarkerCluster
+
+loc = "CriticalJustice"
+title_html = '''
+            <h3 align="center" style="font-size:24px"><b>{}</b></h3>
+            '''.format(loc)
+
+legend_html = '''
+{% macro html(this, kwargs) %}
+<div style="
+    position: fixed; 
+    bottom: 50px;
+    left: 50px;
+    width: 250px;
+    height: 80px;
+    z-index:9999;
+    font-size:14px;
+    ">
+    <p><a style="color:#FD0505;font-size:150%;margin-left:20px;">&diams;</a>&emsp;Fire Incidents</p>
+    <p><a style="color:#05BDFD;font-size:150%;margin-left:20px;">&diams;</a>&emsp;Shots Fired</p>
+</div>
+<div style="
+    position: fixed; 
+    bottom: 50px;
+    left: 50px;
+    width: 150px;
+    height: 80px; 
+    z-index:9998;
+    font-size:14px;
+    background-color: #ffffff;
+
+    opacity: 0.7;
+    ">
+</div>
+{% endmacro %}
+'''
+legend = branca.element.MacroElement()
+legend._template = branca.element.Template(legend_html)
 
 
 pitt_map = folium.Map()
 
+pitt_map.get_root().html.add_child(folium.Element(title_html))
 
 folium.GeoJson('https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson').add_to(pitt_map)
 
@@ -58,6 +98,11 @@ folium.GeoJson(data=counties_gdf["geometry"]).add_to(pitt_map)
 
 
 folium.LayerControl().add_to(pitt_map)
+pitt_map.get_root().add_child(legend)
+
+compass_rose = folium.FeatureGroup('compass rose')
+FloatImage('https://upload.wikimedia.org/wikipedia/commons/9/99/Compass_rose_simple.svg', bottom =80, left = 7).add_to(compass_rose)
+compass_rose.add_to(pitt_map)
 
 # save map to html file
 pitt_map.save('index.html')
