@@ -11,7 +11,7 @@ from folium.plugins import MarkerCluster
 
 loc = "CriticalJustice"
 title_html = '''
-            <h3 align="center" style="font-size:24px"><b>{}</b></h3>
+            <h3 align="center" style="font-size:24px", "background-color:None"><b>{}</b></h3>
             '''.format(loc)
 
 legend_html = '''
@@ -47,9 +47,10 @@ legend = branca.element.MacroElement()
 legend._template = branca.element.Template(legend_html)
 
 
-pitt_map = folium.Map()
+pitt_map = folium.Map(zoom_start=12)
 
 pitt_map.get_root().html.add_child(folium.Element(title_html))
+
 
 folium.GeoJson('https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson').add_to(pitt_map)
 
@@ -96,6 +97,10 @@ for i, r in fire_data.iterrows():
 
 folium.GeoJson(data=counties_gdf["geometry"]).add_to(pitt_map)
 
+sw = base_df[['Latitude', 'Longitude']].min().values.tolist()
+ne = base_df[['Latitude', 'Longitude']].max().values.tolist()
+
+pitt_map.fit_bounds([sw,ne])
 
 folium.LayerControl().add_to(pitt_map)
 pitt_map.get_root().add_child(legend)
