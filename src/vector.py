@@ -1,10 +1,8 @@
 import pandas as pd
 from datatest import validate
-import numpy as np 
 import branca
 import geopandas as gpd
 import folium
-import fiona
 from folium import Choropleth, Marker
 from folium.plugins import FloatImage
 from folium.features import GeoJsonTooltip
@@ -55,7 +53,7 @@ pitt_map.get_root().html.add_child(folium.Element(title_html))
 
 folium.GeoJson('https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson').add_to(pitt_map)
 
-counties_gdf = gpd.read_file(r'C:\Users\favou\Documents\COMP\CriticalJustice\src\Neighborhood_SNAP.shp')
+counties_gdf = gpd.read_file(r'Neighborhood_SNAP.shp')
 base_df = pd.read_csv(r'C:\Users\favou\Documents\COMP\CriticalJustice\data\shots.csv')
 neighbor = pd.read_csv(r"C:\Users\favou\Documents\COMP\CriticalJustice\data\Neighborhood.csv")
 neighbor = neighbor[["Pittsburgh_Neighborhood", "Level_of_Need_Scale"]]
