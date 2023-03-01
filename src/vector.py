@@ -4,6 +4,7 @@ import numpy as np
 import branca
 import geopandas as gpd
 import folium
+import fiona
 from folium import Choropleth, Marker
 from folium.plugins import FloatImage
 from folium.features import GeoJsonTooltip
@@ -102,12 +103,13 @@ ne = base_df[['Latitude', 'Longitude']].max().values.tolist()
 
 pitt_map.fit_bounds([sw,ne])
 
-folium.LayerControl().add_to(pitt_map)
-pitt_map.get_root().add_child(legend)
 
 compass_rose = folium.FeatureGroup('compass rose')
 FloatImage('https://upload.wikimedia.org/wikipedia/commons/9/99/Compass_rose_simple.svg', bottom =80, left = 7).add_to(compass_rose)
 compass_rose.add_to(pitt_map)
+
+folium.LayerControl().add_to(pitt_map)
+pitt_map.get_root().add_child(legend)
 
 # save map to html file
 pitt_map.save('index.html')
