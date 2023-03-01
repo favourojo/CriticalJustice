@@ -54,10 +54,10 @@ pitt_map.get_root().html.add_child(folium.Element(title_html))
 folium.GeoJson('https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson').add_to(pitt_map)
 
 counties_gdf = gpd.read_file(r'Neighborhood_SNAP.shp')
-base_df = pd.read_csv(r'C:\Users\favou\Documents\COMP\CriticalJustice\data\shots.csv')
-neighbor = pd.read_csv(r"C:\Users\favou\Documents\COMP\CriticalJustice\data\Neighborhood.csv")
+base_df = pd.read_csv(r'shots.csv')
+neighbor = pd.read_csv(r'Neighborhood.csv')
 neighbor = neighbor[["Pittsburgh_Neighborhood", "Level_of_Need_Scale"]]
-fire_data = pd.read_csv(r'C:\Users\favou\Documents\COMP\CriticalJustice\data\FireIncident.csv')
+fire_data = pd.read_csv(r'FireIncident.csv')
 
 fire_data = fire_data.dropna(subset=['latitude', 'longitude'])
 
