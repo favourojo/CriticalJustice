@@ -4,7 +4,7 @@
 
 ## Abstract
 
-CriticalJustice visualizes factors in the determinants of crime and the relationship with infrastructure that affect neighborhood development. In predominantly Black communities, there appears to be an excess need for neighborhood development, but it is overshadowed by the assumption that crime prevention should be the focus because of the high number of police dispatches in these communities compared to primarily white communities. Ergo, the attention desperately needed for neighborhood investment slowly starts to shift towards crime prevention. However, factors of a community, such as lack of infrastructure and over-policing, relate to why there is a difference in a demand of need between primarily Black and white communities.
+CriticalJustice visualizes factors in the determinants of crime and the relationship with infrastructure that affect neighborhood development. This research investigates the relationship of police dispatches to these community neighborhoods. This will be carried out specifically by speculating that increasing infrastructure investment has a disproportionate yield. In predominantly Black communities, there appears to be an excess need for neighborhood development. Ergo, the attention desperately needed for neighborhood investment slowly starts to shift towards crime prevention. However, factors of a community, such as lack of infrastructure and over-policing, relate to why there is a difference in a demand of need between primarily Black and white communities.
 
 ## Purpose
 
