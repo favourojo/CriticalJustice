@@ -60,6 +60,6 @@ how specific neighborhoods in Pittsburgh, PA differ based on some key factors su
 python shotsMap.py
 ```
 
-By running this command, a Folium map will be generated in the `index.html` file. The Folium map will contain an zoomed-in interactive map of the city of Pittsburgh, Pennsylvania. In the city of Pittsburgh, there will be markers that represents __Shots Fired Data__ that is located in the `shots.csv` file abd __Fire Incident Data__ that is located in the `FireIncident.csv` file. Also, on the map there is a legend to indicate which color represents which data point and also a compass rose to indicate orientation. 
+By running this command, a Folium map will be generated in the `index.html` file. The Folium map will contain an zoomed-in interactive map of the city of Pittsburgh, Pennsylvania. In the city of Pittsburgh, there will be markers that represents __Shots Fired Data__ that is located in the `shots.csv` file and __Fire Incident Data__ that is located in the `FireIncident.csv` file. Also, on the map there is a legend to indicate which color represents which data point and also a compass rose to indicate orientation. 
 
 ![Interactive Map](images/map.png)
