@@ -1,6 +1,8 @@
 # ***CriticalJustice: Visualizing the Impact of Crime Prevention in Neighborhood Development***
  
-![CriticalJustice](images/newLogo.png)
+<p align="center">
+  <img src="images/NewLogo.png" />
+</p>
 
 ## Abstract
 
