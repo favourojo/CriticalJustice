@@ -10,8 +10,8 @@ from folium.plugins import MarkerCluster
 
 loc = "CriticalJustice"
 title_html = '''
-            <h3 align="center" style="font-size:24px; margin-top: -4px; margin-bottom: -2px;"><b>{}</b></h3>
-            '''.format(loc)
+          <h3 align="center" style="font-size:24px; margin-top: -4px; margin-bottom: -2px;"><b>{}</b></h3>
+         '''.format(loc)
 
 legend_html = '''
 {% macro html(this, kwargs) %}
@@ -41,7 +41,8 @@ legend_html = '''
     ">
 </div>
 {% endmacro %}
-'''
+ '''
+
 legend = branca.element.MacroElement()
 legend._template = branca.element.Template(legend_html)
 
