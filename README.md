@@ -12,7 +12,7 @@ The purpose of this project is to shed light on the issues that are affecting pr
 
 ## Run Instructions in Terminal
 
-SQLite3 command:
+### SQLite3 command:
 
 ```SQL
 sqlite3 community.db
@@ -51,14 +51,15 @@ Query Command:
 ```SQL
 SELECT "column" FROM "database" WHERE "condition"
 ```
-
 With this query command, users will be able to view the connections or correlations between the datasets. Also, the users will be able to view
 how specific neighborhoods in Pittsburgh, PA differ based on some key factors such as __Average Dispatches Per Shot Fired__, __Median Home Value__, and __Level of Need__.
 
-Map Visualization:
+# Map Visualization:
 
 ```python
 python shotsMap.py
 ```
 
-By running this command, a Folium map will be generated in the `index.html` file. The Folium map will contain an interactive world map, but the zoom will be focused on the city of Pittsburgh, Pennsylvania. In the city of Pittsburgh, there will be markers that represents __Shots Fired Data__ that is located in the `shots.csv` file.
+By running this command, a Folium map will be generated in the `index.html` file. The Folium map will contain an zoomed-in interactive map of the city of Pittsburgh, Pennsylvania. In the city of Pittsburgh, there will be markers that represents __Shots Fired Data__ that is located in the `shots.csv` file abd __Fire Incident Data__ that is located in the `FireIncident.csv` file. Also, on the map there is a legend to indicate which color represents which data point and also a compass rose to indicate orientation. 
+
+![Interactive Map](images/map.png)
