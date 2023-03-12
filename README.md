@@ -8,7 +8,7 @@ CriticalJustice visualizes factors in the determinants of crime and the relation
 
 ## Purpose
 
-The purpose of this project is to shed light on the issues that are affecting predominatly Black communities in the city of Pittsburgh. With the use of SQLite3, the connections and correlations between the datasets will be able to be viewed. Also, with the use of queries, individuals will now be able to see how factors such as __Average Dispatches Per Shot Fired__, __Median Home Value__, and __Level of Need__, may contribute to the marginalization of a certain community in Pittsburgh, PA. These factors tend to be overlooked by individuals that live in the suburban communities of Pittsburgh, PA because they do not face these issues.
+The purpose of this propose is to raise awareness of neighborhood development challenges that are harming Pittsburgh's largely Black areas. The relationships and correlations between the downloaded datasets may be seen with the help of SQLite3. In addition, people will be able to observe how variables like __Average Dispatches Per Shot Fired__, __Fire Incidents__, and __Level of Need__ may contribute to the marginalization of a particular community in Pittsburgh, PA, and a greater level of crime, with the use of queries. Those who reside in suburban areas of Pittsburgh, Pennsylvania, where there is a lower rate of crime and a lesser need for services, sometimes disregard these variables because they do not experience these problems.
 
 ## Run Instructions in Terminal
 
