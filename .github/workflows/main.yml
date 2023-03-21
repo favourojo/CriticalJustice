@@ -9,6 +9,7 @@ jobs:
     - uses: actions/checkout@v2
       with: 
         fetch-depth: '0'
+        lfs: 'true'
     - name: Setup Python
       if: always()
       uses: actions/setup-python@v3
@@ -26,7 +27,6 @@ jobs:
     - name: Publish page
       run: |
         cd src
-        ls -la
         python vector.py
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
