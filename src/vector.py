@@ -61,8 +61,10 @@ base_df = pd.read_csv(r'Shots.csv')
 neighbor = pd.read_csv(r'Neighborhood.csv')
 fire_data = pd.read_csv(r'FireIncident.csv')
 
-fire_data = fire_data.dropna(subset=['latitude'])
-fire_data = fire_data.dropna(subset=['longitude'])
+#print(fire_data)
+
+fire_data = fire_data.dropna(subset=['latitude', 'longitude'])
+#fire_data = fire_data.dropna(subset=['longitude'])
 
 folium.Choropleth(
     geo_data='pittsburgh.geojson',
