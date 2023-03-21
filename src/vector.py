@@ -106,12 +106,12 @@ ne = base_df[['Latitude', 'Longitude']].max().values.tolist()
 
 pitt_map.fit_bounds([sw,ne])
 
-layer = folium.FeatureGroup(name='Background')
-layer.add_to(pitt_map, name='Background for Visibility')
+#layer = folium.FeatureGroup(name='Background')
+#layer.add_to(pitt_map, name='Background for Visibility')
 
 
-pitt_map.get_root().html.add_child(folium.Element('<div id="custom_name">Background for Visibility</div>'))
-pitt_map.get_root().html.add_child(folium.Element('<script>document.getElementsByClassName("leaflet-control-layers-overlays")[0].childNodes[0].childNodes[1].innerHTML = document.getElementById("custom_name").innerHTML;</script>'))
+#pitt_map.get_root().html.add_child(folium.Element('<div id="custom_name">Background for Visibility</div>'))
+#pitt_map.get_root().html.add_child(folium.Element('<script>document.getElementsByClassName("leaflet-control-layers-overlays")[0].childNodes[0].childNodes[1].innerHTML = document.getElementById("custom_name").innerHTML;</script>'))
 
 compass_rose = folium.FeatureGroup('compass rose')
 FloatImage('https://upload.wikimedia.org/wikipedia/commons/9/99/Compass_rose_simple.svg', bottom =80, left = 7).add_to(compass_rose)
