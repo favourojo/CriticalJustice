@@ -17,13 +17,7 @@ jobs:
         python-version: 3.10.6
     - name: Install requirements
       run: |
-        pip install datatest
-        pip install numpy
-        pip install geopandas
-        pip install folium
-        pip install pandas
-        pip install pyshp
-        pip install matplotlib
+        python -m pip install - requirements.txt
     - name: Publish page
       run: |
         cd src
