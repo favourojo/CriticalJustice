@@ -2,6 +2,8 @@ import pandas as pd
 from datatest import validate
 import branca
 import geopandas as gpd
+import time
+from datetime import datetime
 import folium
 from folium import Choropleth, Marker
 from folium.plugins import FloatImage
@@ -55,11 +57,12 @@ pitt_map.get_root().html.add_child(folium.Element(title_html))
 folium.GeoJson('https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson').add_to(pitt_map)
 
 counties_gdf = gpd.read_file(r'Neighborhood_SNAP.shp')
-base_df = pd.read_csv(r'shots.csv')
+base_df = pd.read_csv(r'Shots.csv')
 neighbor = pd.read_csv(r'Neighborhood.csv')
 fire_data = pd.read_csv(r'FireIncident.csv')
 
-fire_data = fire_data.dropna(subset=['latitude', 'longitude'])
+fire_data = fire_data.dropna(subset=['latitude'])
+fire_data = fire_data.dropna(subset=['longitude'])
 
 folium.Choropleth(
     geo_data='pittsburgh.geojson',
@@ -101,6 +104,12 @@ ne = base_df[['Latitude', 'Longitude']].max().values.tolist()
 
 pitt_map.fit_bounds([sw,ne])
 
+layer = folium.FeatureGroup(name='Background')
+layer.add_to(pitt_map, name='Background for Visibility')
+
+
+pitt_map.get_root().html.add_child(folium.Element('<div id="custom_name">Background for Visibility</div>'))
+pitt_map.get_root().html.add_child(folium.Element('<script>document.getElementsByClassName("leaflet-control-layers-overlays")[0].childNodes[0].childNodes[1].innerHTML = document.getElementById("custom_name").innerHTML;</script>'))
 
 compass_rose = folium.FeatureGroup('compass rose')
 FloatImage('https://upload.wikimedia.org/wikipedia/commons/9/99/Compass_rose_simple.svg', bottom =80, left = 7).add_to(compass_rose)
