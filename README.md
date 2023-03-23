@@ -18,9 +18,9 @@ The purpose of this propose is to raise awareness of neighborhood development ch
 sqlite3 community.db
 ```
 
-To successfully run this command, the user would need to navigate to the `data` directory that contains each of the datasets. Once this command has been run, the program will switch to the SQLite3 command line shell.
+To successfully run this command, the user would need to navigate to the `src` directory that contains each of the datasets. Once this command has been run, the program will switch to the SQLite3 command line shell.
 
-![SQL Command Shell](images/SQL.png)
+![SQL Command Shell](images/src.png)
 
 After switching to the SQLite3 command line shell, the user can utilize the
 
