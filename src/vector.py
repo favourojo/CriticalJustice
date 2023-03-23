@@ -11,6 +11,7 @@ from folium.features import GeoJsonTooltip
 from folium.plugins import MarkerCluster
 
 loc = "CriticalJustice"
+
 title_html = '''
           <h3 align="center" style="font-size:24px; margin-top: -4px; margin-bottom: -2px;"><b>{}</b></h3>
          '''.format(loc)
@@ -48,11 +49,11 @@ legend_html = '''
 legend = branca.element.MacroElement()
 legend._template = branca.element.Template(legend_html)
 
-
 pitt_map = folium.Map(zoom_start=12)
 
 pitt_map.get_root().html.add_child(folium.Element(title_html))
 
+print("Acquiring GeoJSON")
 
 folium.GeoJson('https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson').add_to(pitt_map)
 
@@ -61,10 +62,9 @@ base_df = pd.read_csv(r'Shots.csv')
 neighbor = pd.read_csv(r'Neighborhood.csv')
 fire_data = pd.read_csv(r'FireIncident.csv')
 
-#print(fire_data)
-
 fire_data = fire_data.dropna(subset=['latitude', 'longitude'])
-#fire_data = fire_data.dropna(subset=['longitude'])
+
+print("Loaded datasets...")
 
 folium.Choropleth(
     geo_data='pittsburgh.geojson',
@@ -77,6 +77,7 @@ folium.Choropleth(
     legend_name="Level of Need Scale in Pittsburgh, Pennsylvania" 
 ).add_to(pitt_map)
 
+print("Map creation complete...")
 
 marker_cluster = MarkerCluster().add_to(pitt_map)
 marker_cluster_1 = MarkerCluster().add_to(pitt_map)
@@ -106,19 +107,18 @@ ne = base_df[['Latitude', 'Longitude']].max().values.tolist()
 
 pitt_map.fit_bounds([sw,ne])
 
-#layer = folium.FeatureGroup(name='Background')
-#layer.add_to(pitt_map, name='Background for Visibility')
-
-
-#pitt_map.get_root().html.add_child(folium.Element('<div id="custom_name">Background for Visibility</div>'))
-#pitt_map.get_root().html.add_child(folium.Element('<script>document.getElementsByClassName("leaflet-control-layers-overlays")[0].childNodes[0].childNodes[1].innerHTML = document.getElementById("custom_name").innerHTML;</script>'))
+print("Finished mapping sets...")
 
 compass_rose = folium.FeatureGroup('compass rose')
 FloatImage('https://upload.wikimedia.org/wikipedia/commons/9/99/Compass_rose_simple.svg', bottom =80, left = 7).add_to(compass_rose)
 compass_rose.add_to(pitt_map)
+
+print("Compass rose added...")
 
 folium.LayerControl().add_to(pitt_map)
 pitt_map.get_root().add_child(legend)
 
 # save map to html file
 pitt_map.save('index.html')
+
+print("Saved HTML file!")
