@@ -21,6 +21,7 @@ jobs:
     - name: Publish page
       run: |
         cd src
-        python vector.py
+        ls -la
+        
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
