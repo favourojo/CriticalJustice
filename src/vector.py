@@ -106,7 +106,8 @@ ne = base_df[['Latitude', 'Longitude']].max().values.tolist()
 
 pitt_map.fit_bounds([sw,ne])
 
-#layer = folium.FeatureGroup(name='Background')
+layer = folium.FeatureGroup(name='Background', show=True)
+pitt_map.add_child(layer)
 #layer.add_to(pitt_map, name='Background for Visibility')
 
 
