@@ -11,6 +11,7 @@ from folium.features import GeoJsonTooltip
 from folium.plugins import MarkerCluster
 
 loc = "CriticalJustice"
+
 title_html = '''
           <h3 align="center" style="font-size:24px; margin-top: -4px; margin-bottom: -2px;"><b>{}</b></h3>
          '''.format(loc)
@@ -48,25 +49,31 @@ legend_html = '''
 legend = branca.element.MacroElement()
 legend._template = branca.element.Template(legend_html)
 
-
 pitt_map = folium.Map(zoom_start=12)
+
+fg1 = folium.FeatureGroup(name='GeoJSON Layer')
+fg2 = folium.FeatureGroup(name='Shots Fired Incidents')
+fg3 = folium.FeatureGroup(name='Fire Incidents')
+fg5 = folium.FeatureGroup(name='Borders')
+fg6 = folium.FeatureGroup(name='Scale Indicator')
+
 
 pitt_map.get_root().html.add_child(folium.Element(title_html))
 
+print("Acquiring GeoJSON")
 
-folium.GeoJson('https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson').add_to(pitt_map)
+folium.GeoJson('https://raw.githubusercontent.com/datasets/geo-admin1-us/master/data/admin1-us.geojson').add_to(fg1)
 
 counties_gdf = gpd.read_file(r'Neighborhood_SNAP.shp')
 base_df = pd.read_csv(r'Shots.csv')
 neighbor = pd.read_csv(r'Neighborhood.csv')
 fire_data = pd.read_csv(r'FireIncident.csv')
 
-#print(fire_data)
-
 fire_data = fire_data.dropna(subset=['latitude', 'longitude'])
-#fire_data = fire_data.dropna(subset=['longitude'])
 
-folium.Choropleth(
+print("Loaded datasets...")
+
+choropleth =folium.Choropleth(
     geo_data='pittsburgh.geojson',
     data=neighbor,
     columns=['Pittsburgh_Neighborhood', 'Level_of_Need_Scale'],
@@ -74,12 +81,15 @@ folium.Choropleth(
     fill_color='YlOrRd',
     fill_opacity=0.7,
     line_opacity=0.2,
+    highlight=True,
     legend_name="Level of Need Scale in Pittsburgh, Pennsylvania" 
 ).add_to(pitt_map)
 
 
-marker_cluster = MarkerCluster().add_to(pitt_map)
-marker_cluster_1 = MarkerCluster().add_to(pitt_map)
+print("Map creation complete...")
+
+marker_cluster = MarkerCluster().add_to(fg2)
+marker_cluster_1 = MarkerCluster().add_to(fg3)
 
 
 tooltip = "Incident Type?"
@@ -99,27 +109,32 @@ for i, r in fire_data.iterrows():
                 popup=r["type_description"], 
                 icon=folium.Icon(color="red", icon="fire", prefix='fa')).add_to(marker_cluster_1), 
 
-folium.GeoJson(data=counties_gdf["geometry"]).add_to(pitt_map)
+
+
+folium.GeoJson(data=counties_gdf["geometry"]).add_to(fg5)
 
 sw = base_df[['Latitude', 'Longitude']].min().values.tolist()
 ne = base_df[['Latitude', 'Longitude']].max().values.tolist()
 
 pitt_map.fit_bounds([sw,ne])
 
-layer = folium.FeatureGroup(name='Background', show=True)
-pitt_map.add_child(layer)
-#layer.add_to(pitt_map, name='Background for Visibility')
+print("Finished mapping sets...")
 
+FloatImage('https://upload.wikimedia.org/wikipedia/commons/9/99/Compass_rose_simple.svg', bottom =80, left = 7).add_to(pitt_map)
 
-#pitt_map.get_root().html.add_child(folium.Element('<div id="custom_name">Background for Visibility</div>'))
-#pitt_map.get_root().html.add_child(folium.Element('<script>document.getElementsByClassName("leaflet-control-layers-overlays")[0].childNodes[0].childNodes[1].innerHTML = document.getElementById("custom_name").innerHTML;</script>'))
+print("Compass rose added...")
 
-compass_rose = folium.FeatureGroup('compass rose')
-FloatImage('https://upload.wikimedia.org/wikipedia/commons/9/99/Compass_rose_simple.svg', bottom =80, left = 7).add_to(compass_rose)
-compass_rose.add_to(pitt_map)
+fg1.add_to(pitt_map)
+fg2.add_to(pitt_map)
+fg3.add_to(pitt_map)
+fg5.add_to(pitt_map)
+fg6.add_to(pitt_map)
+
 
 folium.LayerControl().add_to(pitt_map)
 pitt_map.get_root().add_child(legend)
 
 # save map to html file
 pitt_map.save('index.html')
+
+print("Saved HTML file!")
