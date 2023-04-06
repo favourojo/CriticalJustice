@@ -18,10 +18,5 @@ jobs:
     - name: Install requirements
       run: |
         python -m pip install -r requirements.txt
-    - name: Publish page
-      run: |
-        cd src
-        rm index.html
-        python vector.py
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
