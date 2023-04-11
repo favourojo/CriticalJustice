@@ -113,7 +113,6 @@ for i, r in fire_data.iterrows():
                 icon=folium.Icon(color="red", icon="fire", prefix='fa')).add_to(marker_cluster_1), 
 
 
-
 folium.GeoJson(data=counties_gdf["geometry"]).add_to(fg5)
 
 sw = base_df[['Latitude', 'Longitude']].min().values.tolist()
@@ -132,8 +131,6 @@ fg2.add_to(pitt_map)
 fg3.add_to(pitt_map)
 fg5.add_to(pitt_map)
 fg6.add_to(pitt_map)
-
-
 
 
 folium.LayerControl().add_to(pitt_map)
