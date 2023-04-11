@@ -5,6 +5,7 @@ import geopandas as gpd
 import time
 from datetime import datetime
 import folium
+import json
 from folium import Choropleth, Marker
 from folium.plugins import FloatImage
 from folium.features import GeoJsonTooltip
@@ -73,16 +74,18 @@ fire_data = fire_data.dropna(subset=['latitude', 'longitude'])
 
 print("Loaded datasets...")
 
-choropleth =folium.Choropleth(
+choropleth = folium.Choropleth(
     geo_data='pittsburgh.geojson',
     data=neighbor,
     columns=['Pittsburgh_Neighborhood', 'Level_of_Need_Scale'],
     key_on='feature.properties.name',
     fill_color='YlOrRd',
+    nan_fill_color="Grey",
     fill_opacity=0.7,
     line_opacity=0.2,
     highlight=True,
-    legend_name="Level of Need Scale in Pittsburgh, Pennsylvania" 
+    legend_name="Level of Need Scale",
+    line_color='black'
 ).add_to(pitt_map)
 
 
@@ -129,6 +132,8 @@ fg2.add_to(pitt_map)
 fg3.add_to(pitt_map)
 fg5.add_to(pitt_map)
 fg6.add_to(pitt_map)
+
+
 
 
 folium.LayerControl().add_to(pitt_map)
