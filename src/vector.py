@@ -91,7 +91,6 @@ choropleth = folium.Choropleth(
 ).add_to(pitt_map)
 
 
-
 print("Map creation complete...")
 
 marker_cluster = MarkerCluster().add_to(fg2)
