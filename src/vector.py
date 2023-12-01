@@ -23,20 +23,22 @@ legend_html = '''
     position: fixed; 
     bottom: 50px;
     left: 50px;
-    width: 250px;
-    height: 80px;
+    width: 500px;
+    height: 100px;
     z-index:9999;
-    font-size:14px;
+    font-size:18px;
     ">
     <p><a style="color:#FD0505;font-size:150%;margin-left:20px;">&diams;</a>&emsp;Fire Incidents</p>
-    <p><a style="color:#05BDFD;font-size:150%;margin-left:20px;">&diams;</a>&emsp;Shots Fired</p>
+    <p><a style="color:#FFA500;font-size:150%;margin-left:20px;">&diams;</a>&emsp;Shots Fired Incidents</p>
+    <p><a style="color:#5F9EA0;font-size:150%;margin-left:20px;">&diams;</a>&emsp;Arrests</p>
+
 </div>
 <div style="
     position: fixed; 
-    bottom: 50px;
+    bottom: 25px;
     left: 50px;
-    width: 150px;
-    height: 80px; 
+    width: 250px;
+    height: 120px; 
     z-index:9998;
     font-size:14px;
     background-color: #ffffff;
@@ -55,9 +57,8 @@ pitt_map = folium.Map(zoom_start=12)
 fg1 = folium.FeatureGroup(name='GeoJSON Layer')
 fg2 = folium.FeatureGroup(name='Shots Fired Incidents')
 fg3 = folium.FeatureGroup(name='Fire Incidents')
+fg4 = folium.FeatureGroup(name='Police Presence')
 fg5 = folium.FeatureGroup(name='Borders')
-fg6 = folium.FeatureGroup(name='Scale Indicator')
-
 
 pitt_map.get_root().html.add_child(folium.Element(title_html))
 
@@ -68,6 +69,7 @@ folium.GeoJson('https://raw.githubusercontent.com/datasets/geo-admin1-us/master/
 counties_gdf = gpd.read_file(r'Neighborhood_SNAP.shp')
 base_df = pd.read_csv(r'Shots.csv')
 neighbor = pd.read_csv(r'Neighborhood.csv')
+presence = pd.read_csv(r'Police.csv')
 fire_data = pd.read_csv(r'FireIncident.csv')
 
 fire_data = fire_data.dropna(subset=['latitude', 'longitude'])
@@ -93,24 +95,34 @@ print("Map creation complete...")
 
 marker_cluster = MarkerCluster().add_to(fg2)
 marker_cluster_1 = MarkerCluster().add_to(fg3)
+marker_cluster_2 = MarkerCluster().add_to(fg4)
 
 
-tooltip = "Incident Type?"
+tooltip = "Type of Shot?"
 tooltip1 = "Fire Type Description?"
+tooltip2 = "Incident Type?"
 
 for i, r in base_df.iterrows():
     location =[r['Latitude'], r['Longitude']]
     folium.Marker(location, 
                 tooltip=tooltip, 
                 popup=r["IncidentType"], 
-                icon=folium.Icon(color="blue", icon="person-rifle", prefix='fa')).add_to(marker_cluster)
+                icon=folium.Icon(color="orange", icon="person-rifle", prefix='fa')).add_to(marker_cluster)
 
 for i, r in fire_data.iterrows():
     location1 = [r['latitude'], r['longitude']]
     folium.Marker(location1, 
                 tooltip1=tooltip1, 
                 popup=r["type_description"], 
-                icon=folium.Icon(color="red", icon="fire", prefix='fa')).add_to(marker_cluster_1), 
+                icon=folium.Icon(color="red", icon="fire", prefix='fa')).add_to(marker_cluster_1)
+
+for i, r in presence.iterrows():
+    location2 = [r['latitude'], r['longitude']]
+    folium.Marker(location2,
+                  tooltip2=tooltip2,
+                  popup=r["CALL_TYPE_FINAL"],
+                  icon=folium.Icon(color="cadetblue", icon="handcuffs", prefix='fa')).add_to(marker_cluster_2)
+
 
 
 folium.GeoJson(data=counties_gdf["geometry"]).add_to(fg5)
@@ -129,11 +141,13 @@ print("Compass rose added...")
 fg1.add_to(pitt_map)
 fg2.add_to(pitt_map)
 fg3.add_to(pitt_map)
+fg4.add_to(pitt_map)
 fg5.add_to(pitt_map)
-fg6.add_to(pitt_map)
 
 
 folium.LayerControl().add_to(pitt_map)
+
+
 pitt_map.get_root().add_child(legend)
 
 # save map to html file
